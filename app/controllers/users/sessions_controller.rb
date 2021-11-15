@@ -12,7 +12,10 @@ class Users::SessionsController < Devise::SessionsController
             render json: {
                 messages: "Signed In Successfully",
                 success: true,
-                data: {user: user}
+                data: {
+                    token: user.authentication_token,
+                    customer: user.customer
+                }
             }, status: :ok
         else
             render json: {
