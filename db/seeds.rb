@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# rails generate scaffold_controller api/v1/pets
+
 user = User.create(
     email: 'manucabanga@gmail.com',
     cell_phone: '923747220',

@@ -11,13 +11,13 @@ class Users::SessionsController < Devise::SessionsController
         if user && user.valid_password?(sign_in_params[:password])
             render json: {
                 messages: "Signed In Successfully",
-                is_success: true,
+                success: true,
                 data: {user: user}
             }, status: :ok
         else
             render json: {
                 messages: "Signed In Failed - Unauthorized",
-                is_success: false,
+                success: false,
                 data: {}
             }, status: :unauthorized
         end
