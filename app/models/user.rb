@@ -5,8 +5,15 @@ class User < ApplicationRecord
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
     devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
     has_one :customer
+    has_one :driver
 
     after_create :create_customer
+
+    enum role: {
+        customer: 0,
+        driver: 1,
+        admin: 222
+    }
 
     def email_required?
         false

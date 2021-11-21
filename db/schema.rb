@@ -28,14 +28,17 @@ ActiveRecord::Schema.define(version: 2021_11_21_155400) do
   end
 
   create_table "drivers", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.string "first_name"
     t.string "last_name"
+    t.string "driving_licence"
     t.integer "status", default: 0, null: false
     t.decimal "earnings", default: "0.0", null: false
+    t.string "cell_phone", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
+    t.index ["cell_phone"], name: "index_drivers_on_cell_phone", unique: true
     t.index ["slug"], name: "index_drivers_on_slug", unique: true
     t.index ["user_id"], name: "index_drivers_on_user_id"
   end
