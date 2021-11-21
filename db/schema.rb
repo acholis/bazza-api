@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_11_15_170429) do
   enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
-    t.string "frist_name"
+    t.string "first_name"
     t.string "last_name"
     t.integer "status", default: 1, null: false
     t.bigint "user_id", null: false

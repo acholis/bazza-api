@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  frist_name: MyString
+  first_name: MyString
   last_name: MyString
   user: one
 
 two:
-  frist_name: MyString
+  first_name: MyString
   last_name: MyString
   user: two
