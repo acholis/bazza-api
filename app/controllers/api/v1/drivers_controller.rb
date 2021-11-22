@@ -1,6 +1,11 @@
 class Api::V1::DriversController < ApplicationController
     before_action :set_driver, only: [:show, :update, :destroy]
 
+    def index
+        drivers = Driver.all.includes(:user)
+        render json: drivers, status: :ok
+    end
+    
     def create
         @driver = Driver.new(driver_params)
 
