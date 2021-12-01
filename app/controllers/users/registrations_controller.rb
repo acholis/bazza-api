@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
                     messages: "Utilizador registado com sucesso",
                     success: true,
                     data: @user
-                }, status: :unprocessable_entity
+                }, status: :created
             else
                 render json: {
                     messages: @user.errors,
