@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  driver: one
+  pick_up_time: 1
+  pick_up_from: MyString
+  drop_to: MyString
+  amount: 9.99
+
+two:
+  customer: two
+  driver: two
+  pick_up_time: 1
+  pick_up_from: MyString
+  drop_to: MyString
+  amount: 9.99

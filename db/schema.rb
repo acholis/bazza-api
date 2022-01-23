@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_21_155400) do
+ActiveRecord::Schema.define(version: 2021_12_02_172425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,22 @@ ActiveRecord::Schema.define(version: 2021_11_21_155400) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "rides", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.bigint "driver_id"
+    t.integer "pick_up_time"
+    t.string "pick_up_from", default: ""
+    t.string "drop_to", default: ""
+    t.decimal "amount", default: "0.0", null: false
+    t.integer "status", default: 0, null: false
+    t.boolean "started", default: false, null: false
+    t.boolean "finished", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_rides_on_customer_id"
+    t.index ["driver_id"], name: "index_rides_on_driver_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.integer "role", default: 0, null: false
     t.string "cell_phone", default: "", null: false
@@ -82,4 +98,6 @@ ActiveRecord::Schema.define(version: 2021_11_21_155400) do
 
   add_foreign_key "customers", "users"
   add_foreign_key "drivers", "users"
+  add_foreign_key "rides", "customers"
+  add_foreign_key "rides", "drivers"
 end
