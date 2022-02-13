@@ -10,17 +10,33 @@ class Api::V1::DriversController < ApplicationController
         @driver = Driver.new(driver_params)
 
         if @driver.save
-            render json: @driver, status: :created
+            render json: {
+                message: "Motorista registado com sucesso",
+                success: true,
+                data: @driver
+            }, status: :created
         else
-            render json: @driver.errors, status: :unprocessable_entity
+            render json: {
+                message: "Falha ao registar",
+                success: false,
+                data: @driver.errors
+            }, status: :unprocessable_entity
         end
     end
 
     def update
         if @driver.update(edit_driver_params)
-            render json: @driver
+            render json: {
+                message: "Informações actualizada com sucesso",
+                success: true,
+                data: @driver
+            }, status: :ok
         else
-            render json: @driver.errors, status: :unprocessable_entity
+            render json: {
+                message: "Falha ao actualizar",
+                success: false,
+                data: @driver.errors
+            }, status: :unprocessable_entity
         end
     end
 

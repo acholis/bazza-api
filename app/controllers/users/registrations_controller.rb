@@ -15,20 +15,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
         if @user_exist.nil?
             if @user.save
                 render json: {
-                    messages: "Utilizador registado com sucesso",
+                    message: "Utilizador registado com sucesso",
                     success: true,
                     data: @user
                 }, status: :created
             else
                 render json: {
-                    messages: @user.errors,
+                    message: @user.errors,
                     success: false,
                     data: {}
                 }, status: :unprocessable_entity
             end
         else
             render json: {
-                messages: "Já existe uma conta com este nº de telefone",
+                message: "Já existe uma conta com este nº de telefone",
                 success: false,
                 data: {}
             }, status: :unauthorized

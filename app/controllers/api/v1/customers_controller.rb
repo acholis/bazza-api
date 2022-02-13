@@ -1,35 +1,20 @@
 class Api::V1::CustomersController < ApplicationController
     before_action :set_customer, only: [:show, :update, :destroy]
 
-    # GET /api/v1/customers
-    #def index
-    #    @api_v1_customers = Api::V1::Customer.all
-
-    #    render json: @api_v1_customers
-    #end
-
-    ## GET /api/v1/customers/1
-    #def show
-    #    render json: @api_v1_customer
-    #end
-
-    ## POST /api/v1/customers
-    #def create
-    #    @api_v1_customer = Api::V1::Customer.new(api_v1_customer_params)
-
-    #    if @api_v1_customer.save
-    #    render json: @api_v1_customer, status: :created, location: @api_v1_customer
-    #    else
-    #    render json: @api_v1_customer.errors, status: :unprocessable_entity
-    #    end
-    #end
-
     # PATCH/PUT /api/v1/customers/1
     def update
         if @customer.update(customer_params)
-            render json: @customer
+            render json: {
+                message: "Cliente actualizado com sucesso",
+                success: true,
+                data: @customer
+            }, status: :ok
         else
-            render json: @customer.errors, status: :unprocessable_entity
+            render json: {
+                message: "Falha ao actualizar cliente",
+                success: true,
+                data: @customer.errors
+            }, status: :unprocessable_entity
         end
     end
 

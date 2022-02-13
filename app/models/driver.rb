@@ -4,6 +4,7 @@ class Driver < ApplicationRecord
     after_create :create_user
     #after_destroy :destroy_user, prepend: true
 
+    validates :driving_licence, uniqueness: { message: "Nº de carteira não disponível" }, on: :create
 
     def create_user
         user = User.create(
