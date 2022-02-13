@@ -10,7 +10,7 @@ class Users::SessionsController < Devise::SessionsController
 
         if user && user.valid_password?(sign_in_params[:password])
             render json: {
-                messages: "Signed In Successfully",
+                message: "Sessão iniciada com suesso",
                 success: true,
                 data: {
                     token: user.authentication_token,
@@ -19,7 +19,7 @@ class Users::SessionsController < Devise::SessionsController
             }, status: :ok
         else
             render json: {
-                messages: "Signed In Failed - Unauthorized",
+                message: "Nº de telefone ou senha invalido",
                 success: false,
                 data: {}
             }, status: :unauthorized

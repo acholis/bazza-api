@@ -10,6 +10,8 @@ class Api::V1::RidesController < ApplicationController
 
     # GET /rides/1
     def show
+        ActionCable.server.broadcast("rides_channel_1", {data: @ride})
+
         render json: @ride
     end
 
@@ -18,6 +20,11 @@ class Api::V1::RidesController < ApplicationController
         @ride = Ride.new(ride_params)
 
         if @ride.save
+            ActionCable.server.broadcast(
+                "rides_channel_#{@ride.id}", 
+                {data: @ride}
+            )
+
             render json: @ride, status: :created
         else
             render json: @ride.errors.full_messages, status: :unprocessable_entity
