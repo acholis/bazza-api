@@ -23,10 +23,10 @@ class Api::V1::RidesController < ApplicationController
         @ride = Ride.new(ride_params)
 
         if @ride.save
-            ActionCable.server.broadcast(
-                "rides_channel_#{@ride.id}", 
-                {data: @ride}
-            )
+            #ActionCable.server.broadcast(
+            #    "rides_channel_#{@ride.id}", 
+            #    {data: @ride}
+            #)
 
             render json: {
                 message: "Socitação enviada com sucesso",
