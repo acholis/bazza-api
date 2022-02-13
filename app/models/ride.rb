@@ -9,6 +9,9 @@ class Ride < ApplicationRecord
     }
 
 
+    validates :driver_id, presence: { message: "Têm que ter um motorista associado ao pedido" }, on: :update
+
+
     def start
 
     end

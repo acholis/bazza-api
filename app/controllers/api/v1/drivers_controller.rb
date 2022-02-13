@@ -19,7 +19,7 @@ class Api::V1::DriversController < ApplicationController
             render json: {
                 message: "Falha ao registar",
                 success: false,
-                data: @driver.errors
+                data: @driver.errors.full_messages
             }, status: :unprocessable_entity
         end
     end

@@ -9,8 +9,8 @@ Rails.application.routes.draw do
             resources :customers, only: [:update]
             resources :drivers, only: [:index, :create, :update, :destroy]
             resources :rides, only: [:index, :create, :update, :destroy, :show] do
-                put '/start',   to: 'rides#start'
-                put '/summary',   to: 'rides#summary'
+                put '/started',   to: 'rides#started'
+                put '/finished',  to: 'rides#finished'
             end
         end
     end
