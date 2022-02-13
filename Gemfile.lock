@@ -196,6 +196,7 @@ DEPENDENCIES
   byebug
   devise
   friendly_id (~> 5.4.0)
+  httparty
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)

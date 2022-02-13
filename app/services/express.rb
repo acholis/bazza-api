@@ -10,15 +10,8 @@ class Express
 
     def call
         merchant = Vpos.new(token: express_token)
-
         payment = merchant.new_payment(@cell_phone, @amount)
-
-        p "======================================="
-        p payment
-        p "======================================="
-
         return payment
-
     end
 
     private

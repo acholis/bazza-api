@@ -7,6 +7,28 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # GET /resource/sign_up
 
+    def account_validation
+        account = params[:account]
+        
+        if ValidationCode.validation(account)
+            user = User.find_by_cell_phone(account[:cell_phone])
+            render json: {
+                message: "Conta validada com sucesso",
+                success: true,
+                data: {
+                    token: user.authentication_token,
+                    customer: user.customer
+                }
+            }, status: :ok
+        else
+            render json: {
+                message: "Conta não validada, código invalido",
+                success: false,
+                data: {}
+            }, status: :unprocessable_entity
+
+        end
+    end
 
     # POST /resource
     def create
@@ -14,10 +36,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
         
         if @user_exist.nil?
             if @user.save
+                @user.send_code_validation
                 render json: {
                     message: "Utilizador registado com sucesso",
                     success: true,
-                    data: @user
+                    data: {
+                        token: @user.authentication_token,
+                        customer: @user.customer
+                    }
                 }, status: :created
             else
                 render json: {

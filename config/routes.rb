@@ -20,6 +20,9 @@ Rails.application.routes.draw do
         registrations: 'users/registrations'
     }
 
+    devise_scope :user do
+        post '/account_validation' => 'users/registrations#account_validation'
+    end
 
 
 end

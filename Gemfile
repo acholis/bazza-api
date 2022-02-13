@@ -42,6 +42,7 @@ gem 'devise'
 gem 'simple_token_authentication'
 gem 'friendly_id', '~> 5.4.0'
 gem 'vpos', '~> 1.0.4'
+gem 'httparty'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
