@@ -42,7 +42,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
                     success: true,
                     data: {
                         token: @user.authentication_token,
-                        customer: @user.customer
+                        customer: @user.customer, #if @user.customer?
+                        role: @user.role
                     }
                 }, status: :created
             else
@@ -114,7 +115,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
         end
 
         def configure_sign_up_params
-            params.require(:user).permit(:cell_phone, :password, :password_confirmation)
+            params.require(:user).permit(
+                :cell_phone, 
+                :password, 
+                :password_confirmation,
+                :role
+            )
         end
 
 

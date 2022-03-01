@@ -7,3 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+Admin.create(
+  name: 'JM Cabanga',
+  cell_phone: '937731992',
+  email: 'manucabanga@gmail.com',
+  password: '123456',
+  password_confirmation: '123456'
+)

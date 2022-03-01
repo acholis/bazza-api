@@ -9,13 +9,18 @@ class Users::SessionsController < Devise::SessionsController
         user = User.find_by_cell_phone(sign_in_params[:cell_phone])
 
         if user && user.valid_password?(sign_in_params[:password])
+            data = {
+                token: user.authentication_token,
+                role: user.role
+            }
+
+            data.merge!(customer: user.customer) if user.customer?
+            data.merge!(driver: user.driver) if user.driver?
+
             render json: {
                 message: "Sessão iniciada com suesso",
                 success: true,
-                data: {
-                    token: user.authentication_token,
-                    customer: user.customer
-                }
+                data: data
             }, status: :ok
         else
             render json: {

@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_13_123545) do
+ActiveRecord::Schema.define(version: 2022_03_01_130401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string "name"
+    t.integer "role", default: 222, null: false
+    t.string "cell_phone"
+    t.string "authentication_token"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["authentication_token"], name: "index_admins_on_authentication_token", unique: true
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "first_name"
@@ -28,17 +53,15 @@ ActiveRecord::Schema.define(version: 2022_02_13_123545) do
   end
 
   create_table "drivers", force: :cascade do |t|
-    t.bigint "user_id"
     t.string "first_name"
     t.string "last_name"
     t.string "driving_licence"
     t.integer "status", default: 0, null: false
     t.decimal "earnings", default: "0.0", null: false
-    t.string "cell_phone", default: "", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
-    t.index ["cell_phone"], name: "index_drivers_on_cell_phone", unique: true
     t.index ["slug"], name: "index_drivers_on_slug", unique: true
     t.index ["user_id"], name: "index_drivers_on_user_id"
   end
